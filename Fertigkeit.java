@@ -1,4 +1,4 @@
-package a01225308.coemert;
+package XXXX;
 
 public enum Fertigkeit {
 	MATHEMATIK(30), GEOGRAFIE(10),
