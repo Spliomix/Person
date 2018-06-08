@@ -1,5 +1,4 @@
-package XXXX;
-
+package a01225308.coemert;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -16,8 +15,8 @@ public class ExpertIn extends Person{
 	Set<Fertigkeit> set = new TreeSet<>();
 	@Override
 	boolean trainieren(Fertigkeit f ) {
-        if(map.containsKey(f)) {
-            map.put(f,map.get(f)+3);
+        if(super.getMap().containsKey(f)) {
+        	super.getMap().put(f,super.getMap().get(f)+3);
             return true;
         }
         return false;

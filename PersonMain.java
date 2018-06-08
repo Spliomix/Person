@@ -1,8 +1,9 @@
-package XXXX;
+package a01225308.coemert;import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 
@@ -29,6 +30,40 @@ public class PersonMain {
 		p1.lernen(p2, Fertigkeit.GEOGRAFIE);
 		System.out.println(p1);
 		System.out.println(p2);
+		
+		
+			SortedSet<Person> set_age = new TreeSet<>();
+			SortedSet<Person> set_size = new TreeSet<>((Person l, Person r) -> {
+				return l.compareSize(r);
+			});
+			SortedSet<Person> set_w = new TreeSet<Person>(new Comparator<Person>(){
+				@Override
+				public int compare(Person l, Person r) {
+					return (int) (l.getWeight()-r.getWeight());
+				}
+			});
+			
+			SortedSet<Person> set_bonus = new TreeSet<Person>((l,r) -> {
+				return l.getBonus()-r.getBonus();
+			});
+			
+			set_age.add(p1);
+			set_age.add(p2);
+			
+			set_size.add(p1);
+			set_size.add(p2);
+			
+			set_w.add(p1);
+			set_w.add(p2);
+			System.out.println(set_age);
+			System.out.println(set_size);
+			System.out.println(set_w);
+			//SortedSet set1= new TreeSet((l,r)-> l.toString().compareTo(r.toString());
+			//);
+
+		
+		
+		
     /* OUTPUT:
 		Person [vn=Max, nn=Mustermann, age=50, sz=100, wg=100.0, map={ENGLISCH=1}]
 		Person [vn=Rick, nn=Sanchez, age=70, sz=180, wg=60.0, map={PROGRAMMIEREN=3, JAPANISCH=0}]

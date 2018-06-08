@@ -1,11 +1,12 @@
-package XXXX;
+package a01225308.coemert;
+
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.*;
 
-public class Person {
+public class Person implements Comparable<Person>  {
 	public Person(String vn, String zn, int alter, int size, double weight, Set<Fertigkeit> s) {
 		super();
 		//Throw bei leeren strings undso....
@@ -15,7 +16,8 @@ public class Person {
 			throw new IllegalArgumentException("Größe zu niedring oder zu hoch");
 		if(weight>300 || weight <20)
 			throw new IllegalArgumentException("Alter zu niedring oder zu hoch");
-
+		if(vn.isEmpty() || zn.isEmpty() || vn == null || zn==null)
+			throw new IllegalArgumentException("Name ist leer");
 
 		//TreeSet<Fertigkeit> newSet = new TreeSet<Fertigkeit>(s);
 		map=new HashMap<Fertigkeit, Integer>();
@@ -44,13 +46,17 @@ public class Person {
 	}
 	
 	
-	protected Map<Fertigkeit, Integer> map;//ka ob das stimmt
+	private Map<Fertigkeit, Integer> map;
 	private String vn;
 	private String zn;
 	private int alter;
 	private int size;
 	double weight;
 	
+	
+	public Map<Fertigkeit, Integer> getMap(){
+		return map;
+	};
 	
 	boolean knwoFertigkeit(Fertigkeit f) {
 		if(map.containsKey(f))return true;
@@ -133,4 +139,33 @@ public class Person {
 	public String toString() {
 		return "Person [vn=" + vn + ", zn=" + zn + ", alter=" + alter + ", size=" + size + ", weight=" + weight + ", map="+map+ "]";
 	}
+
+	@Override
+	public int compareTo(Person o) {
+		// TODO Auto-generated method stub
+			return alter-o.alter;
+	}
+	
+	
+
+	public int compareSize(Person o) {	
+			return size-o.size;
+	}
+
+	
+	public int getBonus() {
+		int bonus=0;
+		for(Fertigkeit a : map.keySet()) {
+			bonus=bonus+a.getBonus(map.get(a));
+		}
+		return bonus;
+	}
+	
+	
 }
+	
+	
+	
+	
+	
+	
